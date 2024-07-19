@@ -1,0 +1,109 @@
+const mongoose = require('mongoose')
+const orderSchema = mongoose.Schema({
+    short:{
+        quantity:{
+            type:Number,
+            deafult:0,
+            
+        },
+        price: {
+            type:Number,
+            default:50
+        },
+        total:{
+            type:Number,
+            default:0
+        }
+    },
+    jeans:{
+        quantity:{
+            type:Number,
+            deafult:0,
+            
+        },
+        price:{
+            type:Number,
+            default:80
+        },
+        total:{
+            type:Number,
+            default:0
+        }
+    },
+    shirts:{
+        quantity:{
+            type:Number,
+            deafult:0,
+            
+        },
+        price:{
+            type:Number,
+            default:50
+        },
+        total:{
+            type:Number,
+            default:0
+        }
+    },
+    white:{
+        quantity:{
+            type:Number,
+            deafult:0,
+            
+        },
+        price:{
+            type:Number,
+            default:100
+        },
+        total:{
+            type:Number,
+            default:0
+        }
+    },
+    sweatshirt:{
+        quantity:{
+            type:Number,
+            deafult:0,
+            
+        },
+        price:{
+            type:Number,
+            default:140
+        },
+        total:{
+            type:Number,
+            default:0
+        },
+        curtain:{
+            quantity:{
+                type:Number,
+                default:0
+            },
+            price:{
+                type:Number,
+                default:200
+            },
+            total:{
+                type:Number,
+                default:0
+            }
+        },
+        bedsheet:{
+            quantity:{
+                type:Number,
+                default:0
+            },
+            price:{
+                type:Number,
+                default:250
+            },
+            total:{
+                type:Number,
+                default:0
+            }
+        }
+    },
+    
+},{timestamps:true})
+const userOrder= mongoose.model('userOrder', orderSchema)
+module.exports=userOrder
