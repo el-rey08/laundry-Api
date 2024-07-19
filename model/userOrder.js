@@ -8,7 +8,7 @@ const orderSchema = mongoose.Schema({
         },
         price: {
             type:Number,
-            default:50
+            default:500
         },
         total:{
             type:Number,
@@ -23,7 +23,7 @@ const orderSchema = mongoose.Schema({
         },
         price:{
             type:Number,
-            default:80
+            default:700
         },
         total:{
             type:Number,
@@ -38,7 +38,7 @@ const orderSchema = mongoose.Schema({
         },
         price:{
             type:Number,
-            default:50
+            default:500
         },
         total:{
             type:Number,
@@ -53,7 +53,7 @@ const orderSchema = mongoose.Schema({
         },
         price:{
             type:Number,
-            default:100
+            default:1000
         },
         total:{
             type:Number,
@@ -68,7 +68,7 @@ const orderSchema = mongoose.Schema({
         },
         price:{
             type:Number,
-            default:140
+            default:900
         },
         total:{
             type:Number,
@@ -81,7 +81,7 @@ const orderSchema = mongoose.Schema({
             },
             price:{
                 type:Number,
-                default:200
+                default:1500
             },
             total:{
                 type:Number,
@@ -95,7 +95,7 @@ const orderSchema = mongoose.Schema({
             },
             price:{
                 type:Number,
-                default:250
+                default:200
             },
             total:{
                 type:Number,
