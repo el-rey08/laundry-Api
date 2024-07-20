@@ -32,8 +32,8 @@ exports.order = async (req, res) => {
       order.shirts.total = shirts.quantity * order.shirts.price,
       order.white.total = white.quantity * order.white.price,
       order.sweatshirt.total = sweatshirt.quantity * order.sweatshirt.price,
-      order.curtain.total = curtain.quantity * order.sweatshirt.price,
-      order.bedsheett.total = bedsheet.quantity * order.sweatshirt.price,
+      order.curtain.total = curtain.quantity * order.curtain.price,
+      order.bedsheet.total = bedsheet.quantity * order.bedsheet.price,
     await order.save();
     res.status(201).json({
       message: "your order is placed",
