@@ -1,7 +1,9 @@
 require('dotenv').config();
 require('./config/DBC');
 const express = require('express');
+const cors = require('cors')
 const app = express();
+app.use(cors())
 const router = require('./router/userRouter');
 const orderRouter = require('./router/orderRouter');
 app.use(express.json());
