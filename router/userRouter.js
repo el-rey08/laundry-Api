@@ -20,8 +20,8 @@ router.post('/api/v1/user/login',logInValidator,login);
 router.post('/api/v1/user/logout', logOut);
 router.get("/api/v1/user/customer-info/:id", getOne);
 router.get("/api/v1/user/all-customers-info",authenticate, getAll);
-router.post('/api/v1/user/verify/:token', verifyEmail);
-router.post('/api/v1/user/resend-email', resendVerificationEmail)
+router.get('/api/v1/user/verify/:token', verifyEmail);
+router.get('/api/v1/user/resend-email', resendVerificationEmail)
 router.post('/api/v1/user/reset-password/:token',resetPassword);
 router.post('/api/v1/user/forgot-password',forgetPassword);
 router.delete('/api/v1/user/delete-customer',remove );
