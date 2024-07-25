@@ -16,17 +16,13 @@ const authenticate = async (req, res, next) => {
               message: 'invalid token'
           })
       }
-  //    Verify the validity of the token
       const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-
-      // Find the user in the database and check if the user is still existing
       const user = await userModel.findById(decodedToken.userId);
-      if(!user){
+      if(!user.isAdmin){
           return res.status(401).json({
-              message: 'Authentication failed:  User not found'
+              message: 'Authentication failed:  User not an admin'
           })
       }
-      // Check if the user is an admin
       if(user.blackList.includes(token)){
           return res.status(401).json({
               message: 'Session expired: Please login to continue'
