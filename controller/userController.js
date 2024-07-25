@@ -71,11 +71,11 @@ exports.login = async (req, res) => {
         message: "incorrect password",
       });
     }
-    if(!existingUser.isVerified){
-      return res.status(400).json({
-        message:'user not verified please check your email for verification link'
-      })
-    }
+    // if(!existingUser.isVerified){
+    //   return res.status(400).json({
+    //     message:'user not verified please check your email for verification link'
+    //   })
+    // }
 
     // genrating a token
     const token = jwt.sign(

@@ -27,6 +27,7 @@ exports.order = async (req, res) => {
       }
     };
     const order = new userOrder(data);
+    console.log(order)
       order.short.total = short.quantity * order.short.price,
       order.jeans.total = jeans.quantity * order.jeans.price,
       order.shirts.total = shirts.quantity * order.shirts.price,

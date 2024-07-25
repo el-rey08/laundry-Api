@@ -73,7 +73,8 @@ const orderSchema = mongoose.Schema({
         total:{
             type:Number,
             default:0
-        },
+        }
+    },
         curtain:{
             quantity:{
                 type:Number,
@@ -101,9 +102,7 @@ const orderSchema = mongoose.Schema({
                 type:Number,
                 default:0
             }
-        }
-    },
-    
-},{timestamps:true})
+        },
+    },{timestamps:true})
 const userOrder= mongoose.model('userOrder', orderSchema)
 module.exports=userOrder
