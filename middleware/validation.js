@@ -9,8 +9,8 @@ exports.singUpVlidator = async (req, res, next) => {
       .trim()
       .regex(/^[A-Za-z]+(?: [A-Za-z]+)*$/)
       .messages({
-        "any.required": "please provide first name",
-        "string.empty": "first name cannot be empty",
+        "any.required": "please provide fullname",
+        "string.empty": "fullname cannot be empty",
         "string.min": "the minium name must be at least 3 character long",
         "string.pattern.base": "first name should only contain letters",
       }),
