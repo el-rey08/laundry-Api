@@ -96,7 +96,7 @@ const orderSchema = mongoose.Schema({
             },
             price:{
                 type:Number,
-                default:200
+                default:2000
             },
             total:{
                 type:Number,
