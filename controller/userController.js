@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 const sendMail = require("../helpers/email");
-const htmlTemplate = require("../helpers/template");
+// const htmlTemplate = require("../helpers/template");
 
 // regitration
 exports.signUp = async (req, res) => {
@@ -26,23 +26,23 @@ exports.signUp = async (req, res) => {
       });
 
       // verifing the email
-      const token = jwt.sign(
-        {
-          id: user._id,
-          email: user.email,
-        },
-        process.env.JWT_SECRET,
-        { expiresIn: "20min" }
-      );
-      const verifyLink = `${req.protocol}://${req.get("host")}/api/v1/user/verify/${token}`;
+      // const token = jwt.sign(
+      //   {
+      //     id: user._id,
+      //     email: user.email,
+      //   },
+      //   process.env.JWT_SECRET,
+      //   { expiresIn: "20min" }
+      // );
+      // const verifyLink = `${req.protocol}://${req.get("host")}/api/v1/user/verify/${token}`;
 
-      let mailOptions = {
-        email: user.email,
-        subject: "email verification",
-        html: htmlTemplate(verifyLink, user.fullname),
-      };
+      // let mailOptions = {
+      //   email: user.email,
+      //   subject: "email verification",
+      //   html: htmlTemplate(verifyLink, user.fullname),
+      // };
       await user.save();
-      await sendMail(mailOptions);
+      // await sendMail(mailOptions);
       res.status(201).json({
         message: "user created successfully",
         data: user,
@@ -97,85 +97,85 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.verifyEmail = async (req, res) => {
-  try {
-    // Extract the token from the request params
-    const { token } = req.params;
-    // Extract the email from the verified token
-    const { email } = jwt.verify(token, process.env.JWT_SECRET);
-    // Find the user with the email
-    const user = await userModel.findOne({ email });
-    // Check if the user is still in the database
-    if (!user) {
-      return res.status(404).json({
-        message: "User not found",
-      });
-    }
-    // Check if the user has already been verified
-    if (user.isVerified) {
-      return res.status(400).json({
-        message: "User already verified",
-      });
-    }
-    // Verify the user
-    user.isVerified = true;
-    // Save the user data
-    await user.save();
-    // Send a success response
-    res.status(200).json({
-      message: "User verified successfully",
-    });
-  } catch (error) {
-    if (error instanceof jwt.JsonWebTokenError) {
-      return res.json({ message: "Link expired." });
-    }
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-};
+// exports.verifyEmail = async (req, res) => {
+//   try {
+//     // Extract the token from the request params
+//     const { token } = req.params;
+//     // Extract the email from the verified token
+//     const { email } = jwt.verify(token, process.env.JWT_SECRET);
+//     // Find the user with the email
+//     const user = await userModel.findOne({ email });
+//     // Check if the user is still in the database
+//     if (!user) {
+//       return res.status(404).json({
+//         message: "User not found",
+//       });
+//     }
+//     // Check if the user has already been verified
+//     if (user.isVerified) {
+//       return res.status(400).json({
+//         message: "User already verified",
+//       });
+//     }
+//     // Verify the user
+//     user.isVerified = true;
+//     // Save the user data
+//     await user.save();
+//     // Send a success response
+//     res.status(200).json({
+//       message: "User verified successfully",
+//     });
+//   } catch (error) {
+//     if (error instanceof jwt.JsonWebTokenError) {
+//       return res.json({ message: "Link expired." });
+//     }
+//     res.status(500).json({
+//       message: error.message,
+//     });
+//   }
+// };
   
-// resending verification link
-exports.resendVerificationEmail = async (req, res) => {
-  try {
-    const { email } = req.body;
-    // Find the user with the email
-    const existingUser = await userModel.findOne({ email });
-    // Check if the user is still in the database
-    if (!existingUser) {
-      return res.status(404).json({
-        message: "User not found",
-      });
-    }
-    // Check if the user has already been verified
-    if (existingUser.isVerified) {
-      return res.status(400).json({
-        message: "User already verified",
-      });
-    }
-    const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: "20mins",
-    });
-    const verifyLink = `${req.protocol}://${req.get(
-      "host"
-    )}/api/v1/user/verify/${token}`;
-    let mailOptions = {
-      email: existingUser.email,
-      subject: "Verification email",
-      html: verifyTemplate(verifyLink, existingUser.fullName),
-    };
-    // Send the the email
-    await sendMail(mailOptions);
-    // Send a success message
-    res.status(200).json({
-      message: "Verification email resent successfully",
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
-  }
-};
+// // resending verification link
+// exports.resendVerificationEmail = async (req, res) => {
+//   try {
+//     const { email } = req.body;
+//     // Find the user with the email
+//     const existingUser = await userModel.findOne({ email });
+//     // Check if the user is still in the database
+//     if (!existingUser) {
+//       return res.status(404).json({
+//         message: "User not found",
+//       });
+//     }
+//     // Check if the user has already been verified
+//     if (existingUser.isVerified) {
+//       return res.status(400).json({
+//         message: "User already verified",
+//       });
+//     }
+//     const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, {
+//       expiresIn: "20mins",
+//     });
+//     const verifyLink = `${req.protocol}://${req.get(
+//       "host"
+//     )}/api/v1/user/verify/${token}`;
+//     let mailOptions = {
+//       email: existingUser.email,
+//       subject: "Verification email",
+//       html: verifyTemplate(verifyLink, existingUser.fullName),
+//     };
+//     // Send the the email
+//     await sendMail(mailOptions);
+//     // Send a success message
+//     res.status(200).json({
+//       message: "Verification email resent successfully",
+//     });
+//   } catch (error) {
+//     res.status(500).json({
+//       message: error.message,
+//     });
+//   }
+// };
 
 // forget password
 exports.forgetPassword = async (req, res) => {
@@ -230,6 +230,26 @@ exports.resetPassword = async (req, res) => {
     await existingUser.save();
     res.status(200).json({
       message: "password reset successfully",
+    });
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+};
+
+exports.makeAdmin = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const user = await userModel.findById(userId);
+    if (!user) {
+      return res.status(404).json({
+        message: "user not found",
+      });
+    }
+    user.isAdmin = true;
+    await user.save();
+    res.status(200).json({
+      message: "user now an admin",
+      data: user,
     });
   } catch (error) {
     res.status(500).json(error.message);
