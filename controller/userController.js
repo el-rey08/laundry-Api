@@ -271,8 +271,8 @@ exports.getAll = async (req, res) => {
 // get a specific customer
 exports.getOne = async (req, res) => {
   try {
-    let email = req.params.email;
-    const oneCustomer = await userModel.findById({ email });
+    let id = req.params.id;
+    const oneCustomer = await userModel.findById(id);
     res.status(200).json({
       message: "below is the requested customer's information",
       data: oneCustomer,
