@@ -1,19 +1,19 @@
-const mongoose = require('mongoose')
-const orderSchema = mongoose.Schema({
+const mongoose = require ('mongoose')
+
+const ironSchema = mongoose.Schema({
     short:{
-        quantity:{
-            type:Number,
-            deafult:0,
-            
-        },
-        price: {
-            type:Number,
-            default:500
-        },
-        total:{
-            type:Number,
-            default:0
-        }
+       quantity:{
+        type:Number,
+        default:0
+       },
+       price:{
+        type:Number,
+        default:300
+       },
+       total:{
+        type:Number,
+        default:0
+       }
     },
     jeans:{
         quantity:{
@@ -23,7 +23,7 @@ const orderSchema = mongoose.Schema({
         },
         price:{
             type:Number,
-            default:700
+            default:500
         },
         total:{
             type:Number,
@@ -38,7 +38,7 @@ const orderSchema = mongoose.Schema({
         },
         price:{
             type:Number,
-            default:500
+            default:300
         },
         total:{
             type:Number,
@@ -53,7 +53,7 @@ const orderSchema = mongoose.Schema({
         },
         price:{
             type:Number,
-            default:1000
+            default:500
         },
         total:{
             type:Number,
@@ -68,7 +68,7 @@ const orderSchema = mongoose.Schema({
         },
         price:{
             type:Number,
-            default:900
+            default:600
         },
         total:{
             type:Number,
@@ -82,7 +82,7 @@ const orderSchema = mongoose.Schema({
             },
             price:{
                 type:Number,
-                default:1500
+                default:1000
             },
             total:{
                 type:Number,
@@ -96,7 +96,7 @@ const orderSchema = mongoose.Schema({
             },
             price:{
                 type:Number,
-                default:2000
+                default:1000
             },
             total:{
                 type:Number,
@@ -108,5 +108,5 @@ const orderSchema = mongoose.Schema({
             default: 0
         }
     },{timestamps:true})
-const userOrder= mongoose.model('userOrder', orderSchema)
-module.exports=userOrder
+const ironModel= mongoose.model('ironOrder', ironSchema)
+module.exports=ironModel

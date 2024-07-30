@@ -26,5 +26,5 @@ router.put('/api/v1/admin/make-admin/:id', makeAdmin)
 // router.get('/api/v1/user/resend-email', resendVerificationEmail)
 router.post('/api/v1/user/reset-password/:token',resetPassword);
 router.post('/api/v1/user/forgot-password',forgetPassword);
-router.delete('/api/v1/user/delete-customer',remove );
+router.delete('/api/v1/user/delete-customer/:id',remove );
 module.exports = router;

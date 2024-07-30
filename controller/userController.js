@@ -318,8 +318,8 @@ exports.logOut = async (req, res) => {
 //Delete a customer
 exports.remove = async (req, res) => {
   try {
-    let email = req.params.email;
-    const existingUser = await userModel.findOne({ email });
+    let id = req.params.id;
+    const existingUser = await userModel.findByIdAndDelete(id);
     //check if the customer exist
     if (!existingUser) {
       res.staus(400).json({
@@ -327,7 +327,7 @@ exports.remove = async (req, res) => {
       });
     }
     // after check if the customer does not exist, delete
-    const deleteUser = await userModel.findByIdAndDelete({ email });
+    const deleteUser = await userModel.findByIdAndDelete(id);
     res.status(200).json({
       // sending a success message
       message: "deleted successfully",

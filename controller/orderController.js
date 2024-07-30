@@ -2,7 +2,9 @@ const userOrder = require("../model/userOrder");
 
 exports.order = async (req, res) => {
   try {
-    const { short, jeans, shirts, white, sweatshirt, curtain, bedsheet } = req.body;
+    const { short, jeans, shirts, white, sweatshirt, curtain, bedsheet } =
+      req.body;
+      console.log("Body:: ",req.body);
     const data = {
       short: {
         quantity: short.quantity,
@@ -19,21 +21,30 @@ exports.order = async (req, res) => {
       sweatshirt: {
         quantity: sweatshirt.quantity,
       },
-      curtain:{
-        quantity:curtain.quantity
+      curtain: {
+        quantity: curtain.quantity,
       },
-      bedsheet:{
-        quantity:bedsheet.quantity
-      }
+      bedsheet: {
+        quantity: bedsheet.quantity,
+      },
     };
-    const order = new userOrder(data)
-      order.short.total = short.quantity * order.short.price,
+    const order = new userOrder(data);
+    order.short.total = short.quantity * order.short.price,
       order.jeans.total = jeans.quantity * order.jeans.price,
       order.shirts.total = shirts.quantity * order.shirts.price,
       order.white.total = white.quantity * order.white.price,
       order.sweatshirt.total = sweatshirt.quantity * order.sweatshirt.price,
       order.curtain.total = curtain.quantity * order.curtain.price,
-      order.bedsheet.total = bedsheet.quantity * order.bedsheet.price,
+      order.bedsheet.total = bedsheet.quantity * order.bedsheet.price;
+    const total =
+      order.short.total +
+      order.jeans.total +
+      order.shirts.total +
+      order.white.total +
+      order.sweatshirt.total +
+      order.curtain.total +
+      order.bedsheet.total;
+    order.sumTotal = total;
     await order.save();
     res.status(201).json({
       message: "your order is placed",
