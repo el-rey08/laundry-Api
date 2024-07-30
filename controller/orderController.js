@@ -4,7 +4,6 @@ exports.order = async (req, res) => {
   try {
     const { short, jeans, shirts, white, sweatshirt, curtain, bedsheet } =
       req.body;
-      console.log("Body:: ",req.body);
     const data = {
       short: {
         quantity: short.quantity,
